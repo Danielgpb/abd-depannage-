@@ -1,0 +1,1415 @@
+<!DOCTYPE html><html lang="fr"><head>
+
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>ABD — V3.C4d · Google forward</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+  :root {
+    --yellow: #F5C518;
+    --ink: #080808;
+    --ink-2: #1f1f1f;
+    --mute: #8a8a8a;
+    --paper: #1A1C24;
+    --paper-2: #23262F;
+    --line: rgba(255,255,255,0.08);
+  }
+  html, body { background: var(--paper); color: #E8E8E6; font-family: 'Inter', sans-serif; font-weight: 400; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  body {
+    background:
+      radial-gradient(ellipse 80% 50% at 100% 0%, rgba(245,197,24,0.10), transparent 60%),
+      radial-gradient(ellipse 60% 40% at 0% 40%, rgba(245,197,24,0.05), transparent 60%),
+      var(--paper);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  html, body {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  nav {
+    padding: 20px;
+    display: flex; align-items: center; justify-content: space-between;
+    position: sticky; top: 0;
+    background: rgba(15,15,16,0.75);
+    backdrop-filter: blur(14px);
+    z-index: 50;
+    border-bottom: 1px solid transparent;
+  }
+  .nav-phone {
+    color: #E8E8E6;
+    border: 1px solid var(--line);
+    background: rgba(255,255,255,0.03);
+    border-radius: 100px;
+    padding: 8px 14px;
+  }
+
+  /* GOOGLE RATING STICKY STRIP (under nav) */
+  .g-strip {
+    position: sticky;
+    top: 60px;
+    z-index: 45;
+    background: rgba(15,15,16,0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+    padding: 8px 16px;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 10px;
+  }
+  .g-strip-l { display: flex; align-items: center; gap: 10px; flex: 1; min-width: 0; }
+  .g-strip-l svg.g-icon { width: 18px; height: 18px; flex-shrink: 0; }
+  .g-strip-score { font-weight: 700; color: #F5F4F0; font-size: 14px; }
+  .g-strip-stars { color: #FFC107; letter-spacing: 1px; font-size: 12px; }
+  .g-strip-count { color: #A8A8A4; font-size: 12px; font-family: 'JetBrains Mono', monospace; white-space: nowrap; }
+  .g-strip-cta { color: var(--yellow); font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 500; text-decoration: none; letter-spacing: 0.05em; text-transform: uppercase; padding: 6px 12px; border: 1px solid rgba(245,197,24,0.35); border-radius: 100px; white-space: nowrap; }
+
+  /* GOOGLE REVIEWS block — big widget */
+  .gr-wrap { padding: 64px 20px 32px; background: var(--paper); position: relative; }
+  .gr-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; gap: 14px; }
+  .gr-head .logo-row { display: flex; align-items: center; gap: 10px; }
+  .gr-head svg.g-icon { width: 28px; height: 28px; flex-shrink: 0; }
+  .gr-head .gr-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mute); margin-bottom: 2px; }
+  .gr-head .gr-title { color: #F5F4F0; font-weight: 500; font-size: 14px; letter-spacing: -0.01em; }
+  .gr-head .gr-verified { display: inline-flex; align-items: center; gap: 5px; background: rgba(245,197,24,0.08); border: 1px solid rgba(245,197,24,0.25); padding: 6px 10px; border-radius: 100px; color: var(--yellow); font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.05em; text-transform: uppercase; }
+
+  .gr-card {
+    background: var(--paper-2);
+    border: 1px solid var(--line);
+    border-radius: 32px 8px 32px 8px;
+    padding: 28px 24px;
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .gr-card::before {
+    content: '';
+    position: absolute;
+    top: -50px; right: -30px;
+    width: 160px; height: 160px;
+    background: radial-gradient(circle, rgba(245,197,24,0.18), transparent 70%);
+    pointer-events: none;
+  }
+  .gr-score-row { display: flex; align-items: baseline; gap: 14px; margin-bottom: 12px; position: relative; z-index: 1; }
+  .gr-score { font-size: 68px; font-weight: 500; color: var(--yellow); letter-spacing: -0.04em; line-height: 0.9; }
+  .gr-score-r { display: flex; flex-direction: column; gap: 6px; }
+  .gr-stars { color: #FFC107; font-size: 18px; letter-spacing: 3px; }
+  .gr-count {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: #B8B8B6;
+  }
+  .gr-bars { display: flex; flex-direction: column; gap: 6px; margin-top: 12px; position: relative; z-index: 1; }
+  .gr-bar { display: grid; grid-template-columns: 12px 1fr 30px; gap: 10px; align-items: center; font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--mute); }
+  .gr-bar-track { height: 4px; background: rgba(255,255,255,0.06); border-radius: 100px; overflow: hidden; }
+  .gr-bar-fill { height: 100%; background: var(--yellow); border-radius: 100px; }
+
+  .gr-reviews { display: flex; flex-direction: column; gap: 14px; }
+  .gr-rv {
+    background: var(--paper-2);
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    padding: 18px 18px 20px;
+  }
+  .gr-rv:nth-child(even) { border-radius: 24px 8px 24px 24px; }
+  .gr-rv:nth-child(odd) { border-radius: 8px 24px 24px 24px; }
+  .gr-rv-top { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+  .gr-rv-av {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #f5c518, #e0a800);
+    color: var(--ink);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 600;
+    font-size: 13px;
+    flex-shrink: 0;
+    position: relative;
+  }
+  .gr-rv-av::after {
+    content: '';
+    position: absolute;
+    bottom: -2px; right: -2px;
+    width: 14px; height: 14px;
+    background: white;
+    border-radius: 50%;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath fill='%234285f4' d='M43.6 20.1H42V20H24v8h11.3c-1.6 4.7-6 8-11.3 8-6.6 0-12-5.4-12-12s5.4-12 12-12c3 0 5.8 1.1 7.9 3l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.6-.4-3.9z'/%3E%3Cpath fill='%2334a853' d='M6.3 14.7l6.6 4.8c1.8-4.4 6-7.5 11.1-7.5 3 0 5.8 1.1 7.9 3l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z'/%3E%3Cpath fill='%23fbbc05' d='M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.3c-2 1.4-4.5 2.2-7.2 2.2-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z'/%3E%3Cpath fill='%234285f4' d='M43.6 20.1H42V20H24v8h11.3c-.8 2.2-2.2 4.1-4.1 5.5l6.2 5.3C41.4 36.3 44 30.6 44 24c0-1.3-.1-2.6-.4-3.9z'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 1.5px solid var(--paper-2);
+  }
+  .gr-rv-meta { flex: 1; min-width: 0; }
+  .gr-rv-name { color: #F5F4F0; font-weight: 500; font-size: 13px; line-height: 1.2; margin-bottom: 2px; }
+  .gr-rv-when { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--mute); }
+  .gr-rv-stars { color: #FFC107; font-size: 12px; letter-spacing: 1.5px; margin-bottom: 8px; }
+  .gr-rv-text { color: #C8C8C6; font-size: 13px; line-height: 1.5; }
+
+  .gr-cta-all {
+    display: inline-flex; align-items: center; gap: 8px;
+    margin-top: 20px;
+    padding: 12px 20px;
+    background: transparent;
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    color: #E8E8E6;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+  }
+  .gr-cta-all svg { width: 14px; height: 14px; }
+
+  /* MAPS / GBP */
+  .maps-wrap { padding: 32px 20px 64px; position: relative; }
+  .maps-card {
+    background: var(--paper-2);
+    border: 1px solid var(--line);
+    border-radius: 28px;
+    overflow: hidden;
+  }
+  .maps-viz {
+    position: relative;
+    height: 220px;
+    background: #1a1f2e;
+    overflow: hidden;
+  }
+  .maps-viz svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .maps-viz .m-pin {
+    position: absolute;
+    width: 34px; height: 34px;
+    transform: translate(-50%, -100%);
+    z-index: 5;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4));
+  }
+  .maps-viz .zone-label {
+    position: absolute;
+    top: 16px; left: 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    background: rgba(15,15,16,0.85);
+    border: 1px solid var(--line);
+    padding: 6px 12px;
+    border-radius: 100px;
+    color: #E8E8E6;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    backdrop-filter: blur(8px);
+  }
+  .maps-viz .zone-label .dot-live { color: var(--yellow); }
+
+  /* GBP card below map */
+  .gbp {
+    padding: 20px;
+    display: flex; flex-direction: column; gap: 14px;
+  }
+  .gbp-head { display: flex; gap: 14px; align-items: flex-start; }
+  .gbp-ph {
+    width: 56px; height: 56px;
+    border-radius: 18px;
+    background: var(--yellow);
+    color: var(--ink);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: -0.02em;
+    flex-shrink: 0;
+    position: relative;
+  }
+  .gbp-ph::after {
+    content: '';
+    position: absolute;
+    bottom: -3px; right: -3px;
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    background: #fff;
+    border: 2px solid var(--paper-2);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%234285f4' d='M21.35 11.1H12v3.2h5.35c-.5 2.5-2.6 4.3-5.35 4.3-3.2 0-5.8-2.6-5.8-5.8s2.6-5.8 5.8-5.8c1.45 0 2.77.54 3.78 1.42l2.4-2.4C16.6 4.5 14.47 3.5 12 3.5 6.76 3.5 2.5 7.76 2.5 13s4.26 9.5 9.5 9.5 9.5-4.26 9.5-9.5c0-.65-.07-1.28-.15-1.9z'/%3E%3C/svg%3E");
+    background-size: 12px;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .gbp-title-row { flex: 1; }
+  .gbp-name { color: #F5F4F0; font-weight: 500; font-size: 16px; letter-spacing: -0.01em; line-height: 1.15; margin-bottom: 4px; }
+  .gbp-cat { color: #9E9E9B; font-size: 12px; margin-bottom: 8px; }
+  .gbp-rating { display: flex; align-items: center; gap: 6px; font-size: 12px; }
+  .gbp-rating b { color: #F5F4F0; font-weight: 500; }
+  .gbp-rating .stars { color: #FFC107; letter-spacing: 1px; font-size: 11px; }
+  .gbp-rating a { color: var(--mute); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.2); }
+
+  .gbp-details { display: flex; flex-direction: column; gap: 10px; padding: 14px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .gbp-line { display: flex; align-items: center; gap: 10px; font-size: 13px; color: #C8C8C6; }
+  .gbp-line svg { width: 14px; height: 14px; color: var(--mute); flex-shrink: 0; }
+  .gbp-line .open { color: var(--yellow); font-weight: 500; }
+  .gbp-line a { color: #C8C8C6; text-decoration: none; }
+
+  .gbp-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .gbp-btn { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px; border-radius: 100px; font-size: 13px; font-weight: 500; text-decoration: none; border: none; cursor: pointer; font-family: inherit; }
+  .gbp-btn svg { width: 14px; height: 14px; }
+  .gbp-btn.primary { background: var(--yellow); color: var(--ink); }
+  .gbp-btn.secondary { background: rgba(255,255,255,0.04); color: #E8E8E6; border: 1px solid var(--line); }
+
+  /* blink for live pins */
+  @keyframes pin-pulse {
+    0%, 100% { transform: translate(-50%, -100%) scale(1); }
+    50% { transform: translate(-50%, -100%) scale(1.08); }
+  }
+  .m-pin.live { animation: pin-pulse 2s infinite; }
+  .m-pin-ring {
+    position: absolute;
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    border: 2px solid var(--yellow);
+    opacity: 0;
+    transform: translate(-50%, -50%);
+    animation: ring 2s infinite;
+    pointer-events: none;
+  }
+  @keyframes ring {
+    0% { opacity: 0.6; width: 20px; height: 20px; }
+    100% { opacity: 0; width: 80px; height: 80px; }
+  }
+
+  .g-strip {
+    position: sticky;
+    top: 60px;
+    z-index: 45;
+    background: rgba(15,15,16,0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+    padding: 8px 16px;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 10px;
+    font-size: 12px;
+  }
+  .g-strip-l { display: flex; align-items: center; gap: 8px; }
+  .g-logo {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: -0.01em;
+    color: #B8B8B6;
+    display: flex; align-items: center; gap: 4px;
+  }
+  .g-logo svg { width: 14px; height: 14px; }
+  .g-strip-score {
+    font-weight: 600;
+    color: #F5F4F0;
+    font-size: 13px;
+  }
+  .g-strip-stars { color: #FFC107; letter-spacing: 1px; font-size: 11px; }
+  .g-strip-count { color: #8a8a8a; font-size: 11px; font-family: 'JetBrains Mono', monospace; }
+  .g-strip-cta { color: var(--yellow); font-family: 'JetBrains Mono', monospace; font-size: 10px; text-decoration: none; letter-spacing: 0.05em; text-transform: uppercase; padding: 4px 10px; border: 1px solid rgba(245,197,24,0.3); border-radius: 100px; }
+  .logo {
+    display: flex; align-items: center; gap: 10px;
+    font-weight: 600;
+    font-size: 16px;
+    letter-spacing: -0.01em;
+  }
+  .logo-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--yellow);
+    box-shadow: 0 0 0 2px var(--ink);
+    animation: spin 10s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .nav-phone {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    text-decoration: none;
+    color: var(--ink);
+    padding: 8px 14px;
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .nav-phone::before {
+    content: '●'; color: var(--yellow); font-size: 10px;
+    animation: blink 1.8s infinite;
+  }
+  @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+  /* HERO */
+  .hero { padding: 32px 20px 56px; position: relative; }
+
+  /* Hero row — pill on top, big square photo below */
+  .hero-row {
+    display: block;
+    margin-bottom: 28px;
+  }
+  .hero-row .hero-pill { margin-bottom: 18px; }
+
+  /* Hero photo — big square */
+  .hero-photo {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    max-width: 420px;
+    margin: 0 auto;
+    border-radius: 28px;
+    overflow: hidden;
+    background:
+      linear-gradient(160deg, rgba(245,197,24,0.14) 0%, rgba(245,197,24,0) 55%),
+      linear-gradient(180deg, #2a2e3a 0%, #1d2029 100%);
+    border: 1px solid var(--line);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.4), 0 6px 18px rgba(0,0,0,0.25);
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: 16px;
+  }
+  .hero-photo::before {
+    content: 'PHOTO · 1:1';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    color: rgba(255,255,255,0.22);
+  }
+  .hero-photo::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px);
+    background-size: 22px 22px;
+    pointer-events: none;
+    opacity: 0.5;
+  }
+  .hero-photo .hp-tag {
+    position: relative;
+    z-index: 1;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink);
+    background: var(--yellow);
+    padding: 6px 10px;
+    border-radius: 100px;
+    font-weight: 600;
+  }
+  .hero-photo .hp-meta {
+    position: relative;
+    z-index: 1;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    color: rgba(255,255,255,0.45);
+  }
+  .hero-photo .hp-meta {
+    position: relative;
+    z-index: 1;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    color: rgba(255,255,255,0.55);
+  }
+
+  .hero-pill {
+    display: inline-flex; align-items: center;
+    gap: 10px;
+    padding: 8px 16px 8px 12px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #D4D4D0;
+    margin-bottom: 28px;
+  }
+  .hero-pill .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--yellow);
+    animation: ping 2s infinite;
+  }
+  @keyframes ping {
+    0% { box-shadow: 0 0 0 0 rgba(248,209,60,0.6); }
+    80% { box-shadow: 0 0 0 8px rgba(248,209,60,0); }
+    100% { box-shadow: 0 0 0 0 rgba(248,209,60,0); }
+  }
+
+  h1.t {
+    font-weight: 500;
+    font-size: 46px;
+    line-height: 1.02;
+    letter-spacing: -0.035em;
+    margin-bottom: 24px;
+    color: #F5F4F0;
+    position: relative;
+    z-index: 0;
+  }
+  h1.t .strong { font-weight: 700; color: #fff; }
+  h1.t .hl {
+    position: relative;
+    display: inline-block;
+    font-weight: 500;
+    color: var(--ink);
+    padding: 0 14px;
+    margin: 0 -4px;
+  }
+  h1.t .hl::before {
+    content: '';
+    position: absolute;
+    inset: 4px -4px 4px -4px;
+    background: var(--yellow);
+    border-radius: 100px;
+    z-index: -1;
+  }
+  h1.t .hl::after { display: none; }
+
+  .lede { font-size: 16px; line-height: 1.55; color: #B8B8B4; margin-bottom: 32px; max-width: 40ch; }
+  /* CTA buttons — pill shape */
+  .btn-p { flex: 1; background: var(--yellow); color: var(--ink); padding: 16px 22px; border-radius: 100px; text-decoration: none; font-size: 14px; font-weight: 500; display: flex; align-items: center; justify-content: center; gap: 10px; border: none; }
+  .btn-p .arr { color: var(--ink); }
+  .btn-g { padding: 16px 22px; border-radius: 100px; background: rgba(255,255,255,0.04); border: 1px solid var(--line); color: #E8E8E6; font-size: 14px; font-weight: 500; cursor: pointer; }
+
+  /* Stats — asymmetric rounded container */
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); background: rgba(255,255,255,0.025); border: 1px solid var(--line); border-radius: 28px 8px 28px 8px; padding: 8px; gap: 4px; margin-bottom: 44px; overflow: hidden; }
+  .stat { padding: 18px 14px; background: transparent; border-right: none; border-radius: 20px; }
+  .stat:nth-child(2) { background: rgba(245,197,24,0.05); border-radius: 4px; }
+  .stat .n { color: #F5F4F0; font-weight: 500; }
+  .stat .n .y { color: var(--yellow); font-weight: 500; }
+  .stat .n .u { color: var(--mute); }
+  .stat .l { color: var(--mute); }
+  .stat .n {
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: -0.035em;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .stat .n .u {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--mute);
+    margin-left: 2px;
+  }
+  .stat .l {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: #A8A8A4;
+    letter-spacing: 0.04em;
+    line-height: 1.4;
+    text-transform: uppercase;
+  }
+
+  /* Hero image / map card */
+  .hero-card { background: var(--paper-2); color: #E8E8E6; border-radius: 32px 32px 32px 8px; padding: 26px 24px 24px; position: relative; overflow: hidden; border: 1px solid var(--line); }
+  .hero-card::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 140px; height: 140px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(245,197,24,0.25), transparent 70%);
+    pointer-events: none;
+  }
+  .hero-card::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(rgba(248,209,60,0.14) 1px, transparent 1px);
+    background-size: 16px 16px;
+    opacity: 0.5;
+  }
+  .hero-card-head {
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    position: relative; z-index: 1;
+  }
+  .hero-card-head .live { color: var(--yellow); }
+  .hero-card-head .live::before { content: '●'; margin-right: 4px; animation: blink 1.8s infinite; }
+  .hc-big {
+    font-size: 42px;
+    font-weight: 300;
+    letter-spacing: -0.035em;
+    line-height: 1;
+    margin-bottom: 8px;
+    position: relative; z-index: 1;
+  }
+  .hc-big .y { color: var(--yellow); font-weight: 600; }
+  .hc-sub {
+    font-size: 13px;
+    opacity: 0.7;
+    margin-bottom: 20px;
+    position: relative; z-index: 1;
+  }
+  .hc-foot {
+    display: flex; justify-content: space-between;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255,255,255,0.12);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    position: relative; z-index: 1;
+  }
+  .hc-foot .k { opacity: 0.5; }
+
+  /* SECTION */
+  section { padding: 56px 20px; }
+  .s-h { margin-bottom: 28px; }
+  .s-k {
+    display: inline-block;
+    padding: 5px 11px;
+    background: var(--paper-2);
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #D4D4D0;
+    margin-bottom: 16px;
+  }
+  .s-t {
+    font-weight: 300;
+    font-size: 34px;
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+    position: relative;
+    z-index: 0;
+  }
+  .s-t .strong { font-weight: 600; }
+  .s-t .hl-sm {
+    position: relative;
+    display: inline-block;
+    font-weight: 600;
+  }
+  .s-t .hl-sm::after {
+    content: '';
+    position: absolute;
+    left: -2px; right: -2px; bottom: 3px;
+    height: 8px;
+    background: var(--yellow);
+    z-index: -1;
+  }
+
+  /* SERVICES cards */
+  .svcs {
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .svc { background: var(--paper-2); padding: 22px; border-radius: 24px; display: grid; grid-template-columns: 48px 1fr 24px; gap: 14px; align-items: start; cursor: pointer; transition: background 0.15s; border: 1px solid var(--line); }
+  .svc:nth-child(even) { border-radius: 24px 24px 24px 8px; }
+  .svc:nth-child(odd) { border-radius: 8px 24px 24px 24px; }
+  .svc:active { background: #1f1f22; }
+  .svc-ic { width: 48px; height: 48px; border-radius: 50%; background: rgba(245,197,24,0.12); color: var(--yellow); font-size: 13px; }
+  .svc h3 { color: #F5F4F0; }
+  .svc p { color: #9E9E9B; }
+  .svc.featured { background: var(--paper-2); border-color: var(--yellow); border-radius: 24px 8px 24px 24px !important; }
+  .svc.featured .svc-ic { background: var(--yellow); color: var(--ink); }
+  .svc-ar { color: var(--mute); align-self: center; }
+  .svc.featured .svc-ar { color: var(--yellow); }
+  .svc h3 {
+    font-weight: 600;
+    font-size: 16px;
+    letter-spacing: -0.015em;
+    margin-bottom: 4px;
+    line-height: 1.25;
+  }
+  .svc p {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #B0B0AC;
+  }
+  .svc.featured p { color: #B0B0AC; }
+
+  /* PROCESS — asymmetric pills */
+  .proc { background: var(--paper); }
+  .proc-wrap { background: var(--paper-2); border-radius: 32px; padding: 12px; display: flex; flex-direction: column; gap: 4px; border: 1px solid var(--line); }
+  .ps { padding: 20px 18px; border-radius: 24px; display: grid; grid-template-columns: 44px 1fr auto; gap: 14px; align-items: center; }
+  .ps:nth-child(even) { border-radius: 8px 24px 24px 24px; background: rgba(255,255,255,0.02); }
+  .ps:nth-child(odd) { border-radius: 24px 8px 24px 24px; }
+  .ps:hover { background: rgba(255,255,255,0.04); }
+  .ps-num { width: 36px; height: 36px; border-radius: 50%; background: rgba(245,197,24,0.12); color: var(--yellow); border: 1px solid rgba(245,197,24,0.3); display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-weight: 500; font-size: 12px; }
+  .ps h3 { color: #F5F4F0; font-weight: 600; font-size: 15px; letter-spacing: -0.01em; line-height: 1.25; margin-bottom: 3px; }
+  .ps p { color: #A8A8A4; font-size: 13px; line-height: 1.45; }
+  .ps-t { font-family: 'JetBrains Mono', monospace; font-size: 11px; padding: 5px 10px; background: rgba(255,255,255,0.05); border: 1px solid var(--line); border-radius: 100px; color: #D4D4D0; letter-spacing: 0.04em; }
+
+  /* TESTIMONIALS */
+  .t-rail {
+    display: flex; gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+    scrollbar-width: none;
+    margin: 0 -20px;
+    padding-left: 20px; padding-right: 20px;
+  }
+  .t-rail::-webkit-scrollbar { display: none; }
+  .t-it { min-width: 280px; background: var(--paper-2); padding: 24px 22px; border-radius: 32px 8px 32px 8px; border: 1px solid var(--line); display: flex; flex-direction: column; color: #E8E8E6; }
+  .t-it:nth-child(even) { border-radius: 8px 32px 8px 32px; }
+  .t-it.yellow { background: transparent; border-color: rgba(245,197,24,0.4); }
+  .t-it .st { font-family: 'JetBrains Mono', monospace; font-weight: 400; font-size: 11px; letter-spacing: 0.05em; margin-bottom: 14px; color: var(--yellow); }
+  .t-it .q { color: #E8E8E6; font-size: 15px; line-height: 1.5; margin-bottom: 20px; flex: 1; font-weight: 400; }
+  .t-it .who { display: flex; align-items: center; gap: 10px; padding-top: 14px; border-top: 1px solid var(--line); }
+  .t-it .av { background: rgba(245,197,24,0.15); color: var(--yellow); font-weight: 500; }
+  .t-it.yellow .av { background: var(--yellow); color: var(--ink); }
+  .t-it .name { color: #F5F4F0; font-weight: 500; font-size: 13px; }
+  .t-it .meta { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--mute); }
+  .t-it .st {
+    font-size: 13px;
+    letter-spacing: 2px;
+    margin-bottom: 14px;
+    color: var(--ink);
+  }
+  .t-it .q {
+    font-size: 15px;
+    line-height: 1.4;
+    margin-bottom: 18px;
+    flex: 1;
+  }
+  .t-it .who {
+    display: flex; align-items: center; gap: 10px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(10,10,10,0.08);
+  }
+  .t-it .av {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: var(--ink);
+    color: var(--paper);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .t-it.yellow .av { background: var(--ink); color: var(--yellow); }
+  .t-it .name { font-weight: 600; font-size: 13px; }
+  .t-it .meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--mute);
+    letter-spacing: 0.04em;
+  }
+
+  /* Final CTA */
+  .final { padding: 80px 20px 84px; text-align: left; background: var(--paper-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); border-radius: 48px 48px 0 0; position: relative; overflow: hidden; }
+  .final::before {
+    content: '';
+    position: absolute;
+    bottom: -60px; left: -60px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(245,197,24,0.12), transparent 70%);
+  }
+  .final h2 { font-weight: 400; font-size: 36px; line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 14px; color: #F5F4F0; position: relative; z-index: 1; }
+  .final h2 .hl-sm { color: var(--yellow); font-weight: 500; }
+  .final h2 .hl-sm::after { display: none; }
+  .final p { color: #9E9E9B; font-size: 14px; margin-bottom: 28px; line-height: 1.55; max-width: 36ch; margin-left: 0; margin-right: 0; position: relative; z-index: 1; }
+  .final .phone { display: inline-flex; align-items: center; gap: 12px; padding: 16px 24px; background: var(--yellow); color: var(--ink); border-radius: 100px; text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 17px; font-weight: 500; position: relative; z-index: 1; }
+  .final h2 .hl-sm {
+    position: relative;
+    display: inline-block;
+    font-weight: 600;
+  }
+  .final h2 .hl-sm::after {
+    content: '';
+    position: absolute;
+    left: -2px; right: -2px; bottom: 3px;
+    height: 8px;
+    background: var(--yellow);
+    z-index: -1;
+  }
+  .final p {
+    color: var(--mute);
+    font-size: 14px;
+    margin-bottom: 28px;
+    line-height: 1.5;
+    max-width: 32ch;
+    margin-left: auto; margin-right: auto;
+  }
+  .final .phone {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 24px;
+    background: var(--ink);
+    color: var(--paper);
+    border-radius: 100px;
+    text-decoration: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 18px;
+    font-weight: 500;
+  }
+  .final .phone::before {
+    content: ''; width: 10px; height: 10px; border-radius: 50%;
+    background: var(--yellow);
+    animation: ping 2s infinite;
+  }
+
+  /* FOOTER */
+  footer { padding: 32px 20px 24px; background: var(--paper); border-top: 1px solid var(--line); color: #9E9E9B; }
+  .f-head { color: #F5F4F0; }
+  .f-col h4 { color: var(--mute); }
+  .f-col a { color: #C8C8C6; }
+  .f-meta { color: var(--mute); }
+  .f-grid { border-color: var(--line); }
+  .f-head {
+    display: flex; align-items: center; gap: 10px;
+    font-weight: 600;
+    font-size: 15px;
+    margin-bottom: 24px;
+  }
+  .f-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 16px;
+  }
+  .f-col h4 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--mute);
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+  .f-col a {
+    display: block;
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 13px;
+    margin-bottom: 6px;
+  }
+  .f-meta {
+    display: flex; justify-content: space-between;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--mute);
+  }
+
+  /* Sticky */
+  .stk { position: fixed; bottom: 14px; left: 14px; right: 88px; background: var(--yellow); color: var(--ink); border-radius: 100px;
+    padding: 12px 14px 12px 12px;
+    border-radius: 100px;
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.2);
+    z-index: 40;
+  }
+  /* WhatsApp floating button */
+  .wa {
+    position: fixed;
+    bottom: 14px; right: 14px;
+    width: 62px; height: 62px;
+    border-radius: 50%;
+    background: #25D366;
+    display: flex; align-items: center; justify-content: center;
+    text-decoration: none;
+    z-index: 41;
+    box-shadow: 0 12px 28px rgba(37,211,102,0.35), 0 4px 10px rgba(0,0,0,0.3);
+    animation: wa-pulse 2.6s infinite;
+  }
+  .wa svg { width: 30px; height: 30px; }
+  .wa::after {
+    content: 'WhatsApp';
+    position: absolute;
+    bottom: 68px; right: 0;
+    background: var(--ink);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 500;
+    padding: 4px 10px;
+    border-radius: 100px;
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity .2s, transform .2s;
+    pointer-events: none;
+  }
+  .wa:hover::after { opacity: 1; transform: translateY(0); }
+  @keyframes wa-pulse {
+    0%, 100% { box-shadow: 0 12px 28px rgba(37,211,102,0.35), 0 0 0 0 rgba(37,211,102,0.5); }
+    50% { box-shadow: 0 12px 28px rgba(37,211,102,0.35), 0 0 0 14px rgba(37,211,102,0); }
+  }
+
+  /* PHOTOS mosaic — 1 big + small grid */
+  .photos-wrap { padding: 16px 20px 40px; }
+  .photos-h { padding: 0 0 20px; display: flex; align-items: flex-end; justify-content: space-between; gap: 14px; }
+  .photos-h .gr-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #A8A8A4; margin-bottom: 4px; font-weight: 500; }
+  .photos-h .gr-title { color: #F5F4F0; font-weight: 600; font-size: 18px; letter-spacing: -0.015em; line-height: 1.2; }
+  .photos-mosaic {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .photos-mosaic .ph-hero {
+    grid-column: 1 / -1;
+    aspect-ratio: 16 / 10;
+  }
+  .ph {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    border-radius: 20px;
+    overflow: hidden;
+    background:
+      linear-gradient(160deg, rgba(245,197,24,0.10) 0%, rgba(245,197,24,0) 55%),
+      linear-gradient(180deg, #2a2e3a 0%, #1d2029 100%);
+    border: 1px solid var(--line);
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    padding: 12px;
+    cursor: pointer;
+  }
+  .ph::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px);
+    background-size: 18px 18px;
+    pointer-events: none;
+    opacity: 0.6;
+  }
+  .ph-placeholder {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.2);
+    text-align: center;
+    padding: 0 8px;
+  }
+  .ph-ico { display: none; }
+  .ph-tag {
+    position: relative;
+    z-index: 1;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink);
+    background: var(--yellow);
+    padding: 5px 9px;
+    border-radius: 100px;
+    font-weight: 600;
+  }
+  .ph:nth-child(1) { grid-column: 1 / -1; }
+  /* hide old rail rules (superseded above) */
+  .photos-rail { display: none !important; }
+  .stk .ic {
+    width: 38px; height: 38px;
+    background: var(--ink);
+    color: var(--yellow);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+  }
+  .stk .lb {
+    flex: 1;
+    font-weight: 500;
+    font-size: 14px;
+  }
+  .stk .nb {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    opacity: 0.7;
+  }
+  body { padding-bottom: 84px; }
+</style>
+</head>
+<body data-cc-id="cc-1" style="cursor: crosshair;">
+
+<nav>
+  <div class="logo">
+    <span class="logo-dot"></span>
+    ABD Dépannage
+  </div>
+  <a href="tel:+33100000000" class="nav-phone">01 00 00 00 00</a>
+</nav>
+
+<div class="g-strip">
+  <div class="g-strip-l">
+    <svg class="g-icon" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+      <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"></path>
+      <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"></path>
+      <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"></path>
+      <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"></path>
+    </svg>
+    <span class="g-strip-score">4.9</span>
+    <span class="g-strip-stars">★★★★★</span>
+    <span class="g-strip-count">423 avis</span>
+  </div>
+  <a href="#avis" class="g-strip-cta">Voir →</a>
+</div>
+
+<section class="hero" data-cc-id="cc-4" style="font-family: sans-serif;">
+  <div class="hero-row" data-cc-id="cc-3" style="font-family: sans-serif;">
+    <div class="hero-pill" style="font-family: sans-serif;">
+      <span class="dot"></span>
+      <span style="font-family: sans-serif;">Dispo · 24/7</span>
+    </div>
+    <div class="hero-photo" aria-hidden="true" data-cc-id="cc-2" style="background-size: cover; font-family: sans-serif;">
+      <span class="hp-tag" style="font-family: sans-serif;">Dépanneuse · nuit</span>
+      <span class="hp-meta" style="font-family: sans-serif;">IMG_001</span>
+    </div>
+  </div>
+
+  <h1 class="t" style="font-family: sans-serif;">
+    Une panne.<br>
+    Un <span class="hl" style="font-family: sans-serif;">appel</span>.<br>
+    <span class="strong" style="font-family: sans-serif;">22 minutes</span>.
+  </h1>
+
+  <p class="lede" style="font-family: sans-serif;">
+    Remorquage et dépannage automobile en Île-de-France, pour particuliers et professionnels. Jour, nuit, weekend.
+  </p>
+
+  <div class="cta" style="font-family: sans-serif;">
+    <a href="tel:+33100000000" class="btn-p" style="font-family: sans-serif;">
+      Appeler <span class="arr" style="font-family: sans-serif;">→</span>
+    </a>
+    <button class="btn-g" style="font-family: sans-serif;">Devis</button>
+  </div>
+
+  <div class="stats" style="font-family: sans-serif;">
+    <div class="stat" style="font-family: sans-serif;">
+      <div class="n" style="font-family: sans-serif;">22<span class="u" style="font-family: sans-serif;">min</span></div>
+      <div class="l" style="font-family: sans-serif;">Temps<br>moyen</div>
+    </div>
+    <div class="stat" style="font-family: sans-serif;">
+      <div class="n" style="font-family: sans-serif;">12<span class="u" style="font-family: sans-serif;">ans</span></div>
+      <div class="l" style="font-family: sans-serif;">Sur la<br>route</div>
+    </div>
+    <div class="stat" style="font-family: sans-serif;">
+      <div class="n" style="font-family: sans-serif;">4.9<span class="u" style="font-family: sans-serif;">/5</span></div>
+      <div class="l" style="font-family: sans-serif;">Note<br>clients</div>
+    </div>
+  </div>
+
+  <div class="hero-card" style="font-family: sans-serif;">
+    <div class="hero-card-head" style="font-family: sans-serif;">
+      <span class="live" style="font-family: sans-serif;">Dispatch live</span>
+      <span style="font-family: sans-serif;">14:32</span>
+    </div>
+    <div class="hc-big" style="font-family: sans-serif;">3 équipes<br><span class="y" style="font-family: sans-serif;">disponibles</span></div>
+    <p class="hc-sub" style="font-family: sans-serif;">Dernière intervention · Paris 15<sup style="font-family: sans-serif;">e</sup> · il y a 4 min</p>
+    <div class="hc-foot" style="font-family: sans-serif;">
+      <span style="font-family: sans-serif;"><span class="k" style="font-family: sans-serif;">ETA</span> 4 min</span>
+      <span style="font-family: sans-serif;"><span class="k" style="font-family: sans-serif;">Zone</span> ÎDF + périph.</span>
+    </div>
+  </div>
+</section>
+
+<!-- GOOGLE REVIEWS WIDGET -->
+<section class="gr-wrap" id="avis">
+  <div class="gr-head">
+    <div class="logo-row">
+      <svg class="g-icon" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+        <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"></path>
+        <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"></path>
+        <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"></path>
+        <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"></path>
+      </svg>
+      <div>
+        <div class="gr-label">Avis Google</div>
+        <div class="gr-title">Ce que disent nos clients</div>
+      </div>
+    </div>
+    <span class="gr-verified">✓ Vérifié</span>
+  </div>
+
+  <div class="gr-card">
+    <div class="gr-score-row">
+      <div class="gr-score">4.9</div>
+      <div class="gr-score-r">
+        <div class="gr-stars">★★★★★</div>
+        <div class="gr-count">423 avis · Google</div>
+      </div>
+    </div>
+    <div class="gr-bars">
+      <div class="gr-bar"><span>5★</span><div class="gr-bar-track"><div class="gr-bar-fill" style="width:92%"></div></div><span>92%</span></div>
+      <div class="gr-bar"><span>4★</span><div class="gr-bar-track"><div class="gr-bar-fill" style="width:6%"></div></div><span>6%</span></div>
+      <div class="gr-bar"><span>3★</span><div class="gr-bar-track"><div class="gr-bar-fill" style="width:1%"></div></div><span>1%</span></div>
+      <div class="gr-bar"><span>2★</span><div class="gr-bar-track"><div class="gr-bar-fill" style="width:0%"></div></div><span>0%</span></div>
+      <div class="gr-bar"><span>1★</span><div class="gr-bar-track"><div class="gr-bar-fill" style="width:1%"></div></div><span>1%</span></div>
+    </div>
+  </div>
+
+  <div class="gr-reviews">
+    <div class="gr-rv">
+      <div class="gr-rv-top">
+        <div class="gr-rv-av">JM</div>
+        <div class="gr-rv-meta">
+          <div class="gr-rv-name">Julien Marchand</div>
+          <div class="gr-rv-when">il y a 3 jours · Paris 15ᵉ</div>
+        </div>
+      </div>
+      <div class="gr-rv-stars">★★★★★</div>
+      <div class="gr-rv-text">Panne de batterie à 2h du mat, ils étaient là en 18 minutes. Dépanneur super pro, prix annoncé au téléphone, aucune mauvaise surprise. Je recommande à 1000%.</div>
+    </div>
+    <div class="gr-rv">
+      <div class="gr-rv-top">
+        <div class="gr-rv-av">SL</div>
+        <div class="gr-rv-meta">
+          <div class="gr-rv-name">Sophie Laurent</div>
+          <div class="gr-rv-when">il y a 1 semaine · Boulogne</div>
+        </div>
+      </div>
+      <div class="gr-rv-stars">★★★★★</div>
+      <div class="gr-rv-text">Remorquage sans souci après un accident. L'équipe a été rassurante, professionnelle, et a pris soin du véhicule. Merci !</div>
+    </div>
+    <div class="gr-rv">
+      <div class="gr-rv-top">
+        <div class="gr-rv-av">KP</div>
+        <div class="gr-rv-meta">
+          <div class="gr-rv-name">Kévin Petit</div>
+          <div class="gr-rv-when">il y a 2 semaines · Montreuil</div>
+        </div>
+      </div>
+      <div class="gr-rv-stars">★★★★★</div>
+      <div class="gr-rv-text">Déjà la 3ᵉ fois que je fais appel à eux pour ma flotte pro. Jamais déçu. Devis clair, facture nette, intervention rapide.</div>
+    </div>
+  </div>
+
+  <a href="https://g.page/r/abd-depannage" class="gr-cta-all">
+    Voir les 423 avis sur Google
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 3v2h3.6l-9.8 9.8 1.4 1.4L19 6.4V10h2V3z"></path></svg>
+  </a>
+</section>
+
+<!-- PHOTOS MOSAIC -->
+<section class="photos-wrap">
+  <div class="photos-h">
+    <div>
+      <div class="gr-label">Photos · Équipe en action</div>
+      <div class="gr-title">Du terrain, pas du stock</div>
+    </div>
+    <span class="gr-verified">Google Photos</span>
+  </div>
+  <div class="photos-mosaic">
+    <div class="ph ph-hero">
+      <span class="ph-placeholder">Photo · Plateau de nuit</span>
+      <span class="ph-tag">Plateau 01</span>
+    </div>
+    <div class="ph">
+      <span class="ph-placeholder">Équipe nuit</span>
+      <span class="ph-tag">Équipe</span>
+    </div>
+    <div class="ph">
+      <span class="ph-placeholder">Intervention</span>
+      <span class="ph-tag">Interv.</span>
+    </div>
+    <div class="ph">
+      <span class="ph-placeholder">Dépôt</span>
+      <span class="ph-tag">Dépôt</span>
+    </div>
+    <div class="ph">
+      <span class="ph-placeholder">Chargement</span>
+      <span class="ph-tag">Charg.</span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="s-h">
+    <div class="s-k">01 — Services</div>
+    <h2 class="s-t">Tous les <span class="hl-sm">imprévus</span> de la route.</h2>
+  </div>
+  <div class="svcs">
+    <div class="svc featured">
+      <div class="svc-ic">01</div>
+      <div>
+        <h3>Remorquage voiture</h3>
+        <p>Plateau, dépose garage ou domicile. Le service cœur.</p>
+      </div>
+      <div class="svc-ar">→</div>
+    </div>
+    <div class="svc">
+      <div class="svc-ic">02</div>
+      <div>
+        <h3>Dépannage sur place</h3>
+        <p>Diagnostic et remise en route sans passer par le garage.</p>
+      </div>
+      <div class="svc-ar">→</div>
+    </div>
+    <div class="svc">
+      <div class="svc-ic">03</div>
+      <div>
+        <h3>Batterie &amp; électrique</h3>
+        <p>Batterie, démarreur, alternateur — test et remplacement.</p>
+      </div>
+      <div class="svc-ar">→</div>
+    </div>
+    <div class="svc">
+      <div class="svc-ic">04</div>
+      <div>
+        <h3>Véhicule accidenté</h3>
+        <p>Enlèvement sécurisé, coordination avec votre assurance.</p>
+      </div>
+      <div class="svc-ar">→</div>
+    </div>
+    <div class="svc">
+      <div class="svc-ic">05</div>
+      <div>
+        <h3>Urgence autoroute</h3>
+        <p>Intervention agréée sur réseau autoroutier.</p>
+      </div>
+      <div class="svc-ar">→</div>
+    </div>
+  </div>
+</section>
+
+<section class="proc">
+  <div class="s-h">
+    <div class="s-k">02 — Processus</div>
+    <h2 class="s-t">Quatre étapes, un <span class="hl-sm">interlocuteur</span>.</h2>
+  </div>
+  <div class="proc-wrap">
+    <div class="ps">
+      <div class="ps-num">1</div>
+      <div>
+        <h3>Vous appelez</h3>
+        <p>Opérateur humain, pas de serveur vocal.</p>
+      </div>
+      <div class="ps-t">&lt; 30s</div>
+    </div>
+    <div class="ps">
+      <div class="ps-num">2</div>
+      <div>
+        <h3>On dispatche</h3>
+        <p>L'équipe la plus proche part. SMS de suivi.</p>
+      </div>
+      <div class="ps-t">2 min</div>
+    </div>
+    <div class="ps">
+      <div class="ps-num">3</div>
+      <div>
+        <h3>On intervient</h3>
+        <p>Diagnostic sur place, remise en route ou plateau.</p>
+      </div>
+      <div class="ps-t">22 min</div>
+    </div>
+    <div class="ps">
+      <div class="ps-num">4</div>
+      <div>
+        <h3>On livre</h3>
+        <p>Dépose au garage choisi, dossier assurance.</p>
+      </div>
+      <div class="ps-t">Fin</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="s-h">
+    <div class="s-k">03 — Témoignages</div>
+    <h2 class="s-t">Clients <span class="hl-sm">vérifiés</span>.</h2>
+  </div>
+  <div class="t-rail">
+    <div class="t-it yellow">
+      <div class="st">★★★★★</div>
+      <p class="q">Panne à 2h du matin sur le périph. Ils étaient là en 18 min, sans drame.</p>
+      <div class="who">
+        <div class="av">MD</div>
+        <div>
+          <div class="name">Marc D.</div>
+          <div class="meta">Paris · 03.2026</div>
+        </div>
+      </div>
+    </div>
+    <div class="t-it">
+      <div class="st">★★★★★</div>
+      <p class="q">On travaille avec ABD pour toute notre flotte. Réactivité sans faille.</p>
+      <div class="who">
+        <div class="av">SL</div>
+        <div>
+          <div class="name">Sophie L.</div>
+          <div class="meta">Flotte · 38 véh.</div>
+        </div>
+      </div>
+    </div>
+    <div class="t-it">
+      <div class="st">★★★★★</div>
+      <p class="q">Accident sur l'A6. L'équipe a tout géré, y compris avec l'assurance.</p>
+      <div class="who">
+        <div class="av">KR</div>
+        <div>
+          <div class="name">Karim R.</div>
+          <div class="meta">Évry · 02.2026</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAPS / GBP -->
+<section class="maps-wrap">
+  <div class="gr-head" style="padding: 0 0 20px;">
+    <div class="logo-row">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 24px; height: 24px;">
+        <path fill="#EA4335" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path>
+      </svg>
+      <div>
+        <div class="gr-label">Google Maps · Fiche établissement</div>
+        <div class="gr-title">Notre zone d'intervention</div>
+      </div>
+    </div>
+    <span class="gr-verified">✓ GBP</span>
+  </div>
+
+  <div class="maps-card">
+    <div class="maps-viz">
+      <!-- stylized dark map -->
+      <svg viewBox="0 0 400 220" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="bgmap" cx="50%" cy="50%" r="70%">
+            <stop offset="0%" stop-color="#2a2e3e"></stop>
+            <stop offset="100%" stop-color="#12151f"></stop>
+          </radialGradient>
+          <radialGradient id="zonefill" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#F5C518" stop-opacity="0.35"></stop>
+            <stop offset="70%" stop-color="#F5C518" stop-opacity="0.08"></stop>
+            <stop offset="100%" stop-color="#F5C518" stop-opacity="0"></stop>
+          </radialGradient>
+        </defs>
+        <rect width="400" height="220" fill="url(#bgmap)"></rect>
+        <!-- streets grid -->
+        <g stroke="rgba(255,255,255,0.06)" stroke-width="1" fill="none">
+          <path d="M0,40 L400,40 M0,80 L400,80 M0,140 L400,140 M0,180 L400,180"></path>
+          <path d="M60,0 L60,220 M140,0 L140,220 M240,0 L240,220 M320,0 L320,220"></path>
+        </g>
+        <!-- Seine (river) -->
+        <path d="M -20,120 Q 80,100 140,125 T 280,115 T 420,130" stroke="rgba(80,120,180,0.35)" stroke-width="6" fill="none" stroke-linecap="round"></path>
+        <!-- main roads (yellowish) -->
+        <g stroke="rgba(245,197,24,0.12)" stroke-width="2" fill="none">
+          <path d="M0,110 L400,110"></path>
+          <path d="M200,0 L200,220"></path>
+          <path d="M50,0 Q160,110 350,220"></path>
+          <circle cx="200" cy="110" r="80" stroke-dasharray="4 4"></circle>
+        </g>
+        <!-- coverage zone -->
+        <ellipse cx="200" cy="110" rx="170" ry="90" fill="url(#zonefill)" stroke="#F5C518" stroke-width="1.5" stroke-dasharray="4 4" opacity="0.6"></ellipse>
+      </svg>
+
+      <span class="zone-label"><span class="dot-live">●</span> Zone couverte · Paris + petite couronne</span>
+
+      <!-- HQ pin -->
+      <div class="m-pin-ring" style="left: 50%; top: 50%;"></div>
+      <svg class="m-pin live" viewBox="0 0 32 44" style="left: 50%; top: 50%;">
+        <path d="M16 0C7.2 0 0 7.2 0 16c0 12 16 28 16 28s16-16 16-28c0-8.8-7.2-16-16-16z" fill="#F5C518"></path>
+        <circle cx="16" cy="16" r="6" fill="#0A0A0A"></circle>
+      </svg>
+
+      <!-- satellite pins -->
+      <svg class="m-pin" viewBox="0 0 32 44" style="left: 22%; top: 38%; width: 22px; height: 22px; opacity: 0.7;">
+        <path d="M16 0C7.2 0 0 7.2 0 16c0 12 16 28 16 28s16-16 16-28c0-8.8-7.2-16-16-16z" fill="#E8E8E6"></path>
+        <circle cx="16" cy="16" r="5" fill="#0A0A0A"></circle>
+      </svg>
+      <svg class="m-pin" viewBox="0 0 32 44" style="left: 72%; top: 30%; width: 22px; height: 22px; opacity: 0.7;">
+        <path d="M16 0C7.2 0 0 7.2 0 16c0 12 16 28 16 28s16-16 16-28c0-8.8-7.2-16-16-16z" fill="#E8E8E6"></path>
+        <circle cx="16" cy="16" r="5" fill="#0A0A0A"></circle>
+      </svg>
+      <svg class="m-pin" viewBox="0 0 32 44" style="left: 68%; top: 65%; width: 22px; height: 22px; opacity: 0.7;">
+        <path d="M16 0C7.2 0 0 7.2 0 16c0 12 16 28 16 28s16-16 16-28c0-8.8-7.2-16-16-16z" fill="#E8E8E6"></path>
+        <circle cx="16" cy="16" r="5" fill="#0A0A0A"></circle>
+      </svg>
+    </div>
+
+    <div class="gbp">
+      <div class="gbp-head">
+        <div class="gbp-ph">ABD</div>
+        <div class="gbp-title-row">
+          <div class="gbp-name">ABD Dépannage</div>
+          <div class="gbp-cat">Dépannage automobile · Paris</div>
+          <div class="gbp-rating">
+            <b>4,9</b>
+            <span class="stars">★★★★★</span>
+            <a href="#avis">(423)</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="gbp-details">
+        <div class="gbp-line">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm4.2 14.4L11 13V7h1.5v5.2l4.5 2.7z"></path></svg>
+          <span class="open">Ouvert · 24/7</span>
+          <span style="color: var(--mute); margin-left: 4px;">· toute l'année</span>
+        </div>
+        <div class="gbp-line">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.3 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5c-1.4 0-2.5-1.1-2.5-2.5s1.1-2.5 2.5-2.5 2.5 1.1 2.5 2.5-1.1 2.5-2.5 2.5z"></path></svg>
+          <span>Paris + petite couronne · 92/93/94</span>
+        </div>
+        <div class="gbp-line">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1l-2.3 2.2z"></path></svg>
+          <a href="tel:+33100000000">01 00 00 00 00</a>
+        </div>
+      </div>
+
+      <div class="gbp-actions">
+        <a href="https://maps.google.com" target="_blank" class="gbp-btn secondary">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.7 11.3l-9-9c-.4-.4-1-.4-1.4 0l-9 9c-.4.4-.4 1 0 1.4l9 9c.4.4 1 .4 1.4 0l9-9c.4-.4.4-1 0-1.4zM14 14.5V12h-4v3H8v-4c0-.6.4-1 1-1h5V7.5l3.5 3.5L14 14.5z"></path></svg>
+          Itinéraire
+        </a>
+        <a href="tel:+33100000000" class="gbp-btn primary">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1l-2.3 2.2z"></path></svg>
+          Appeler
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <h2>Un <span class="hl-sm">problème</span> ?<br>Un appel suffit.</h2>
+  <p>Opérateur humain. Réponse immédiate. Partout en Île-de-France.</p>
+  <a href="tel:+33100000000" class="phone">01 00 00 00 00</a>
+</section>
+
+<footer>
+  <div class="f-head">
+    <span class="logo-dot"></span>
+    ABD Dépannage
+  </div>
+  <div class="f-grid">
+    <div class="f-col">
+      <h4>Services</h4>
+      <a href="#">Remorquage</a>
+      <a href="#">Dépannage</a>
+      <a href="#">Batterie</a>
+    </div>
+    <div class="f-col">
+      <h4>Contact</h4>
+      <a href="#">01 00 00 00 00</a>
+      <a href="#"><span class="__cf_email__" data-cfemail="35565a5b41545641755457511b5347">[email&#160;protected]</span></a>
+    </div>
+  </div>
+  <div class="f-meta">
+    <span>© 2026 ABD</span>
+    <span>Mentions légales</span>
+  </div>
+</footer>
+
+<a href="tel:+33100000000" class="stk">
+  <span class="ic">☏</span>
+  <span class="lb">Appeler l'équipe</span>
+  <span class="nb">24/7</span>
+</a>
+
+<a href="https://wa.me/33100000000" target="_blank" class="wa" aria-label="Contacter sur WhatsApp">
+  <svg viewBox="0 0 32 32" fill="#fff" xmlns="http://www.w3.org/2000/svg">
+    <path d="M16 3C8.8 3 3 8.8 3 16c0 2.3.6 4.5 1.7 6.4L3 29l6.8-1.8c1.9 1 4 1.6 6.2 1.6 7.2 0 13-5.8 13-13S23.2 3 16 3zm0 23.6c-2 0-3.9-.5-5.6-1.5l-.4-.2-4 1.1 1.1-3.9-.3-.4c-1-1.7-1.6-3.7-1.6-5.7 0-6 4.9-10.9 10.8-10.9s10.8 4.9 10.8 10.9-4.8 10.6-10.8 10.6zm5.9-8.2c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.4-.5-2.6-1.6-1-.9-1.6-2-1.8-2.3-.2-.3 0-.5.1-.6.1-.1.3-.4.5-.5.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.2-.7-1.7-1-2.3-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1.1 1-1.1 2.5s1.1 3 1.3 3.2c.2.2 2.2 3.4 5.4 4.7.8.3 1.3.5 1.8.7.8.2 1.5.2 2 .1.6-.1 1.9-.8 2.1-1.5.3-.7.3-1.4.2-1.5-.1-.2-.2-.3-.5-.4z"></path>
+  </svg>
+</a>
+
+
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body></html>

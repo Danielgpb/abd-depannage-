@@ -1,0 +1,69 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.tmp
+*.bak
+*.log
+_tmp*
+tmp/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Node (if added later)
+node_modules/
+npm-debug.log*
+
+# Build artifacts
+dist/
+build/
+
+# Local secrets / env (not used yet but for safety)
+.env
+.env.local
+.env.*.local
+*.key
+*.pem
+
+# Backup folders
+backup/
+old/
+
+# Claude Code / AI agent internals (not for public repo)
+.agents/
+.claude/
+.superpowers/
+
+# Project working notes / sensitive content
+photo/
+titre/
+
+# Image generation prompts (internal docs, contain creative briefs)
+IMAGES-PROMPTS.md
+prompts-photos.txt
+HOMEPAGE-CONTENT.md
+ANALYSE-PROMPTS-HOMEPAGE.md
+AUDIT-*.md
+RAPPORT-*.md
+ARCHITECTURE.md
+
+# Internal working folders (not part of the public site)
+abd photo/
+docs/
+prompte/
+scripts/
+skills-lock.json
+dossier sans titre/

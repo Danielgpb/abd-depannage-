@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /v3c4d-googleabd.html
+
+Sitemap: https://abd-depannage.be/sitemap.xml
