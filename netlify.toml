@@ -1,0 +1,47 @@
+[build]
+  publish = "."
+
+# ── Cache des assets statiques (1 an, immutable) ────────────────────────────
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/favicon.svg"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# ── Cache modéré pour le HTML (1h, peut être révalidé) ──────────────────────
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=3600, must-revalidate"
+
+# ── Headers de sécurité (toutes les pages) ──────────────────────────────────
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(self), microphone=(), camera=()"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains"
+
+# ── Redirection forcée www → apex (ou inverse selon ton choix) ──────────────
+# Décommente la ligne ci-dessous si tu veux forcer abd-depannage.be (sans www)
+# [[redirects]]
+#   from = "https://www.abd-depannage.be/*"
+#   to = "https://abd-depannage.be/:splat"
+#   status = 301
+#   force = true
