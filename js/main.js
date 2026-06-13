@@ -240,19 +240,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
   /* ==========================================================
-     9. HERO PARALLAX
+     9. HERO PHOTO — statique (parallax retiré)
      ========================================================== */
-
-  var heroImg = document.querySelector('.hero-home__image img');
-
-  if (heroImg) {
-    window.addEventListener('scroll', function () {
-      var scrolled = window.scrollY;
-      if (scrolled < 800) {
-        heroImg.style.transform = 'translateY(' + (scrolled * 0.15) + 'px)';
-      }
-    }, { passive: true });
-  }
+  /* L'ancien parallax décalait la photo au scroll (translateY), ce qui
+     révélait le fond sombre en haut de la carte puisque l'image fait
+     exactement 100% de la hauteur. La photo reste désormais fixe. */
 
 
   /* ==========================================================
