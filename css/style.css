@@ -671,7 +671,6 @@ h1 .hl::before, .hl::before {
   position: relative;
   width: 100%;
   aspect-ratio: 3 / 2;
-  max-width: 420px;
   margin: 0 auto 32px;
   border-radius: 20px;
   overflow: hidden;
@@ -2903,6 +2902,7 @@ section {
   .hero-home__image {
     margin: 0;
     order: 2;
+    max-width: 420px;
   }
 
   .story-section__inner {
