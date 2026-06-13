@@ -1,4 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
   <rect width="32" height="32" rx="6" fill="#0A0A0A"/>
-  <text x="16" y="22" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Inter,sans-serif" font-size="18" font-weight="900" fill="#F5C518" letter-spacing="-0.5">A</text>
+  <path d="M16 4.5 L25.5 7.6 V15 C25.5 21 21.2 24.8 16 26.8 C10.8 24.8 6.5 21 6.5 15 V7.6 Z"
+        fill="#F5C518" stroke="#0A0A0A" stroke-width="1"/>
+  <text x="16" y="18.6" text-anchor="middle"
+        font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Inter,Arial,sans-serif"
+        font-size="8.5" font-weight="900" fill="#0A0A0A" letter-spacing="-0.6">ABD</text>
 </svg>
